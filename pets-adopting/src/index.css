@@ -1,0 +1,303 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  width: 100%;
+  height: 100%;
+}
+.welcome-header, .admin-btn{
+ background-color:#F7DC6F;
+font-family: "Varela Round", sans-serif;
+}
+.header-nav{
+  text-align: center;
+}
+.admin-btn{
+ color: #fff;
+}
+.admin-btn:hover{
+border: solid 0.5px #F5B041;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button
+{
+-webkit-appearance: none;
+margin: 0;
+}
+.show-password{
+  font-size: 0.8rem;
+  text-align: center;
+}
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.nav-bar-pages {
+  display: flex;
+  align-items: center;
+  margin-top: 2rem;
+  margin-right: 2rem;
+  /* border: solid black; */
+}
+.nav-bar a,
+.get-started-link a,
+.modalWindow {
+  text-decoration: none;
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-right: 0.8rem;
+}
+.nav-bar a:not(.active),
+.modalWindow {
+  color: #696969;
+}
+.nav-bar a:hover:not(.active),
+.modalWindow:hover {
+  color: #ff3f2c;
+}
+.nav-bar a:hover,
+.get-started-link a:hover {
+  color: #fff;
+}
+.nav-bar .active,
+.get-started-link a {
+  background-color: #ff3f2c;
+  padding: 0.3rem 0.8rem;
+  color: #fff;
+}
+.modalWindow:hover {
+  cursor: pointer;
+}
+.nav-title {
+  display: flex;
+  align-items: center;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+  font-family: "Ultra", serif;
+}
+.home-text {
+  margin-top: 4rem;
+  font-size: 2rem;
+  font-family: "Ultra", serif;
+}
+.home-adopt-text {
+  margin-right: 0.4rem;
+}
+.nav-title-dot,
+.home-adopt-text {
+  color: #ff99cc;
+}
+.paw-img {
+  margin-right: 0.5rem;
+  width: 2rem;
+}
+.home-description {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+  justify-content: center;
+}
+.description-text {
+  font-family: "Varela Round", sans-serif;
+  font-weight: bold;
+}
+.get-started-link {
+  font-weight: 0;
+  margin-top: 0.5rem;
+  width: fit-content;
+  font-size: 0.9rem;
+}
+
+
+.modal-title {
+  font-weight: bolder;
+  color: #ff99cc;
+}
+.modal-close-btn:hover,
+.modal-back-btn:hover,
+.search-btn:hover,
+.sort-btn:hover,.delete-btn, .get-started-link, .pet-form-btn ,.form-photo-box,.header-exit,.admin-leran-more-btn, .admin-btn{
+  cursor: pointer;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+.login-form input {
+  margin-bottom: 0.5rem;
+  padding: 0.4rem;
+}
+.login-btn {
+  width: fit-content;
+  border: none;
+  background-color: #ff99cc;
+  padding: 0.4rem 1.2rem;
+  color: #fff;
+  font-family: "Varela Round", sans-serif;
+  align-self: center;
+  font-weight: bolder;
+  margin-top: 1rem;
+}
+.notSigned-btn, .login-now-btn {
+  border-bottom: solid 1px #ff99cc;
+  padding: 0.2rem 0.5rem;
+  color: #ff99cc;
+  font-family: "Varela Round", sans-serif;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+
+.notSigned-btn:hover, .login-now-btn:hover, .login-btn:hover {
+  border:solid 0.5px #ff3f2c;
+  cursor: pointer;
+}
+.login-now-btn{
+  padding: 0.3rem 0.9rem;
+  font-weight: bold;
+  border: none; 
+  font-size: 1rem;
+  background-color: #ff99cc;
+  color: #fff;
+}
+
+.notSigned-txt {
+  font-family: "Varela Round", sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #696969;
+}
+.search-box {
+  width: 80%;
+  padding: 0.3rem;
+  border: solid 3px #ff99cc;
+}
+
+.search-bar {
+  width: 60%;
+  padding: 0.4rem;
+  outline: none;
+}
+.search-btn {
+  background-color: #ff99cc;
+  padding: 0.4rem 0.6rem;
+  margin-left: 0.3rem;
+}
+.form-check-input {
+  background-color: #ff99cc;
+}
+
+.search-page {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8%;
+  align-items: center;
+}
+.advanced-search-form {
+  width: fit-content;
+  justify-content: center;
+  align-self: flex-end;
+  margin-top: 0.4rem;
+  margin-right: 10%;
+  padding: 1.6rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.sort-bt {
+  font-family: "Varela Round", sans-serif;
+  color: #696969;
+}
+
+.pet-form {
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 50%;
+  max-width: 50%;
+  max-height: 25rem;
+  min-height: 25rem;
+  margin-left: 20%;
+  margin-top: 2%;
+}
+.pet-form-header {
+  align-self: flex-start;
+  margin-left: 1rem;
+  padding: 1rem;
+  font-size: 1.8rem;
+  font-family: "Varela Round", sans-serif;
+  font-weight:bold ;
+  
+}
+.form-box {
+  min-width: 100%;
+  min-height: 25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+.pet-form-body{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+width: 100%;
+min-width: 100%;
+max-height: 25rem;
+min-height: 25rem;
+box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+padding: 2rem; 
+}
+.pet-form-btn {
+  background-color: #ff99cc;
+  color: #fff;
+  padding: 1.5rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.form-photo-box {
+  display: flex;
+  flex-direction: column;
+}
+.drop-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: dotted #ff99cc 3px;
+  max-width: 50%;
+  margin-left: 25%;
+}
+.camera-icon {
+  background-color: #ff99cc;
+  padding: 2rem;
+  color: #fff;
+}
+.pet-submit-btn{
+  align-self: flex-end;
+width: 10%;
+border: none;
+font-weight: bold;
+padding: 0.3rem;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.pet-submit-btn:hover{
+  background-color: #ff3f2c;
+}
+
+.cards-container{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+.pet-card{
+  font-family: "Varela Round", sans-serif;
+  align-items: center;
+  padding: 1rem;
+  min-width: 15rem;
+  max-width: 15rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
