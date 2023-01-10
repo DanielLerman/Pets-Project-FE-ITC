@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import petsAdoptingContext from "../context/context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
+import axios from 'axios';
 
 function Login() {
   const { imAdmin, setImAdmin, togglePassword, passwordShown} = useContext(petsAdoptingContext);
@@ -11,11 +12,21 @@ function Login() {
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
   };
-  const handleAdminKey=(e)=>{
-    e.preventDefault();
-    if(adminKey=="250100") setImAdmin(true)
+  // const handleAdminKey=(e)=>{
+  //   e.preventDefault();
+  //   if(adminKey=="250100") setImAdmin(true)
   
-   }
+  //  }
+const handleLogIn= async (e)=>{
+  e.preventDefault();
+  console.log(userInfo)
+  try{
+    const res=await axios.post('http://localhost:8080/LogIn',{...userInfo})
+   console.log(res.data)
+    
+  }catch(err){console.log(err)}
+}
+
   return (
     <form className="login-form">
       <input
@@ -39,7 +50,7 @@ function Login() {
      { logAsAdmin&&<input value={adminKey} onChange={(e)=>{setAdminKey(e.target.value)}} className="rounded-pill border border-grey border border-2" type={passwordShown ? "text" : "password"} placeholder="enter admin key"/>}
      <span className='notSigned-txt align-self-center my-1'>Not Admin? <span className='admin-leran-more-btn mx-2 rounded-pill text-warning'><ins>Learn More</ins></span></span>
       </div>
-      <button  onClick={handleAdminKey} className="login-btn rounded-pill my-2"><FontAwesomeIcon icon={faPaw} /></button>
+      <button  onClick={handleLogIn} className="login-btn rounded-pill my-2"><FontAwesomeIcon icon={faPaw} /></button>
     </form>
   );
 }

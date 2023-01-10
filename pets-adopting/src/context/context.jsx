@@ -6,11 +6,12 @@ function Provider({ children }) {
 const[petList, setPetLiist]=useState([])
 const [imAdmin, setImAdmin]=useState(false)
 const [passwordShown, setPasswordShown] = useState(false);
+const[currentUser, setCurrentUser]=useState("")
  const handlePetProfileChange=(e)=>{
   setPetProfileInfo({...petProfileInfo, [e.target.id]:e.target.value})
  }
  const deletePet=(petId)=>{
-  const updatedPetsList=petList.filter(pet=>pet.id!==petId)
+  const updatedPetsList=petList.filter(pet=>pet._id!==petId)
   setPetLiist(updatedPetsList)
  }
  const togglePassword = () => {
@@ -26,7 +27,9 @@ const [passwordShown, setPasswordShown] = useState(false);
       imAdmin,
       setImAdmin,
       togglePassword,
-      passwordShown
+      passwordShown,
+      currentUser, 
+      setCurrentUser
     }
     return (
         <petsAdoptingContext.Provider value={valueToShere}>

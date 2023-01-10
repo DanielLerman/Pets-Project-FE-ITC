@@ -5,10 +5,14 @@ import petsAdoptingContext from "../context/context";
 const PetsShow = ({pet}) => {
     const {deletePet} = useContext(petsAdoptingContext); 
   const handleDelete= async ()=>{
+    console.log(pet)
+    console.log(pet._id)
     try{
-        const res= await axios.delete(`http://localhost:8080/Pets/${pet.id}`)
+        const res= await axios.delete(`http://localhost:8080/Pets/${pet._id}`)
+        console.log(res.data)
         if(res.data.ok){
-            deletePet(pet.id);
+          console.log(pet._id)
+            deletePet(pet._id);
         }
     }catch(err){console.log(err)}
   }
