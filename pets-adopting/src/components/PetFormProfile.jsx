@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import petsAdoptingContext from "../context/context";
 
 const PetFormProfile = () => {
-  const {    petProfileInfo, handlePetProfileChange} = useContext(petsAdoptingContext);
+  const {petProfileInfo, handlePetProfileChange} = useContext(petsAdoptingContext);
   return (
     <form className='d-flex flex-column mx-4'>
     <input className="rounded-pill border border-2 border-grey  p-2" placeholder='name' id="name" value={petProfileInfo.name} onChange={handlePetProfileChange} required/>
@@ -34,8 +34,14 @@ const PetFormProfile = () => {
     <option>No</option>
 
 </select>
-<span className=" p-2 text-secondary d-flex align-items-center  my-2" > <input className="mx-2" type="checkbox" checked  id="adoptionStatus" value={petProfileInfo.adoptionStatus} onChange={handlePetProfileChange}/>Avalibale </span>
-
+{/* <span className=" p-2 text-secondary d-flex align-items-center  my-2" > <input className="mx-2" type="checkbox" checked  id="adoptionStatus" value={petProfileInfo.adoptionStatus} onChange={handlePetProfileChange}/>Avalibale </span> */}
+<select  className="rounded-pill border border-2 border-grey my-2 p-2 text-secondary" id="adoptionStatus" value={petProfileInfo.adoptionStatus} onChange={handlePetProfileChange}>
+    <option>Adoption Status </option> 
+    <option>Adoption</option>
+    <option>Foster</option>
+    <option>Available</option>
+</select>
+<input className="rounded-pill border border-2 border-grey my-2 p-2 text-secondary" placeholder="Enter Breed type" id="breed" value={petProfileInfo.breed} onChange={handlePetProfileChange}/>
   </form>
   )
 }

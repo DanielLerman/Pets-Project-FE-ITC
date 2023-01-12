@@ -31,7 +31,7 @@ function ModalWindow() {
           <Modal.Title className='modal-title d-flex fw-bolder '>{formtype? "Login": "SignUp" }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-       {formtype? <Login/> :<SignUp/>}
+       {formtype? <Login setShow={setShow}/> :<SignUp/>}
     
         </Modal.Body>
         <Modal.Footer >

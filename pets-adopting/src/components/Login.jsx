@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 
-function Login() {
-  const { imAdmin, setImAdmin, togglePassword, passwordShown} = useContext(petsAdoptingContext);
+function Login({setWelcomeShow}) {
+  const { setCurrentUser, togglePassword, passwordShown, currentUser} = useContext(petsAdoptingContext);
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const[logAsAdmin, setLogAsAdmin]=useState(false)
   const[adminKey, setAdminKey]=useState("")
@@ -17,13 +17,27 @@ function Login() {
   //   if(adminKey=="250100") setImAdmin(true)
   
   //  }
+
+  const getCurrentUser=(userName)=>{
+    localStorage.setItem('currentUser', userName);
+
+  }
+  
+ 
+
 const handleLogIn= async (e)=>{
   e.preventDefault();
-  console.log(userInfo)
   try{
-    const res=await axios.post('http://localhost:8080/LogIn',{...userInfo})
+    const res= await axios.post('http://localhost:8080/LogIn',{...userInfo}, {withCredentials: true})
+   const logedInUser=await  res.data.refreshToken
+   if(!logedInUser) return console.log("wrong info")
+   console.log('yay logged in', res.data.fullName)
    console.log(res.data)
-    
+  //  setCurrentUser(res.data)
+   setWelcomeShow(false)
+  //  getCurrentUser(currentUser.fullName)
+  //  console.log(currentUser.fullName)
+ 
   }catch(err){console.log(err)}
 }
 

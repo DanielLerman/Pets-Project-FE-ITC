@@ -23,7 +23,7 @@ const Pets = () => {
   }
   const handleSubmit= async (e)=>{
     e.preventDefault() 
-    console.log(petProfileInfo)
+    // console.log(petProfileInfo)
     try{
     const res=await axios.post('http://localhost:8080/pets', {...petProfileInfo});
     addNewPet(res.data)

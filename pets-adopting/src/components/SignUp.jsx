@@ -6,22 +6,21 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
 function SignUp() {
-  const { imAdmin, setImAdmin, togglePassword, passwordShown, setcurrentUser} = useContext(petsAdoptingContext);
-  const [userInfo, setUserInfo] = useState({  fullName: "" ,  email: "", password: "" , rePassword:"", });
+  const { usersList, setUsersList, togglePassword, passwordShown, setcurrentUser} = useContext(petsAdoptingContext);
+  const [userInfo, setUserInfo] = useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""});
   const handleChange = (e) => {
-    
     setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
-     console.log(userInfo)
   };
-
+ const addNewUser=(newUser)=>{
+  const usersArray=[...usersList, newUser]
+  setUsersList(usersArray)
+ }
   const handleSignUp =async(e)=>{
     e.preventDefault() 
-    console.log(userInfo)
     try{
       const res=await axios.post('http://localhost:8080/SignUp',{...userInfo})
-     console.log(res.data)
-      
-    }catch(err){console.log(err)}
+      addNewUser(res.data)
+      }catch(err){console.log(err)}
   }
 
   return (

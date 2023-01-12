@@ -13,12 +13,16 @@ const PetFormPhoto = () => {
     accept:"image/*",
     onDrop:(acceptedFile)=>{
       setFile(acceptedFile.map(file=>Object.assign(file,{preview:URL.createObjectURL(file)})))
-      setPetProfileInfo({...petProfileInfo , image:file})
+      // setPetProfileInfo({...petProfileInfo , image:file})
+      console.log(acceptedFile)
     }
   })
 
   const images=file.map(file=>(
+    // console.log(file.preview),
+    // setPetProfileInfo({...petProfileInfo , image:file.preview}),
     <img key={file.name} src={file.preview} alt="img" style={{width:'200px', height:'200px'}}/>
+  
   ))
   return (
     <>
