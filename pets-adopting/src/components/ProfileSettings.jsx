@@ -1,44 +1,67 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState ,useEffect} from 'react';
 import petsAdoptingContext from "../context/context";
 import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileSettings = () => {
-    const {togglePassword, passwordShown} = useContext(petsAdoptingContext);
-    const [updateUserInfo, setUpdateUserInfo]=useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""});
-    const handleChange = (e) => {
-        setUpdateUserInfo({ ...updateUserInfo, [e.target.id]: e.target.value });
-      };
+    const {togglePassword, passwordShown,userInfo,handleUserInfo, currentUser, setUserInfo, setCurrentUser} = useContext(petsAdoptingContext);
+  const [toUpdateInfo, setToupdateInfo]=useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""})
+  console.log(toUpdateInfo)
+    const handleUserInfoUpdate = (e) => {
+      // if(e.target.value==="") {
+      //   console.log(currentUser.e.target.id)
+      //   setToupdateInfo({ ...toUpdateInfo, [e.target.id]:currentUser.e.target.id });
+      // } 
+       setToupdateInfo({ ...toUpdateInfo, [e.target.id]: e.target.value });
+    };
+
+    const updateUser=async(e)=>{
+      e.preventDefault();
+      try{
+      const res= await axios.post(`http://localhost:8080/Update` ,{...toUpdateInfo},{withCredentials: true})
+      console.log(res.data)
+      setCurrentUser(res.data)
+      }catch(err){console.log(err)}
+    }
+
+    useEffect(() => {
+      console.log('currentUser now', currentUser)
+     }, [currentUser])
+    
+   
+    
+   
+  
   return (
-    <form className="login-form" >
+    <form className="updateProfile-form login-form justify-content-center rounded-5 " >
     <input
   className="rounded-pill border border-grey border border-2"
-    onChange={handleChange}
+    onChange={handleUserInfoUpdate}
     placeholder="Full Name"
-    value={updateUserInfo.fullName}
+    value={toUpdateInfo.fullName}
     id="fullName"
   />
    <input
    type="tel"
   className="rounded-pill border border-grey border border-2"
-  onChange={handleChange}
+  onChange={handleUserInfoUpdate}
     placeholder="Phone Number"
-    value={updateUserInfo.phoneNumber}
+    value={toUpdateInfo.phoneNumber}
     id="phoneNumber"
   />
     <input
   className="rounded-pill border border-grey border border-2"
-    onChange={handleChange}
+    onChange={handleUserInfoUpdate}
     placeholder="Email"
-    value={updateUserInfo.email}
+    value={toUpdateInfo.email}
     id="email"
   />
   <input
    className="rounded-pill border border-grey border border-2"
-    onChange={handleChange}
+    onChange={handleUserInfoUpdate}
     placeholder="Password"
-    value={updateUserInfo.password}
+    value={toUpdateInfo.password}
     id="password"
     type={passwordShown ? "text" : "password"}
   />
@@ -46,15 +69,15 @@ const ProfileSettings = () => {
   <label className='align-self-center my-3 fw-semibold'>Confirm Password</label>
     <input
    className="rounded-pill border border-grey border border-2"
-    onChange={handleChange}
+    onChange={handleUserInfoUpdate}
     placeholder="Password"
-    value={updateUserInfo.rePassword}
+    value={toUpdateInfo.rePassword}
     id="rePassword"
     type={passwordShown ? "text" : "password"}
   />
-  <button className="login-btn rounded-pill" type='submit'> Let's Goo.. <FontAwesomeIcon icon={faPaw} /></button>
+  <button onClick={updateUser} className="login-btn rounded-pill" type='submit'> Update <FontAwesomeIcon icon={faPaw} /></button>
 </form>
-  )
-}
-
+  
+)
+  }
 export default ProfileSettings

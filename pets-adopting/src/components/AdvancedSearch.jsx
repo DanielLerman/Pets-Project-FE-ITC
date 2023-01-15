@@ -22,7 +22,9 @@ function AdvancedSearch() {
  
 
   return (
-    <div className="advanced-search-form d-flex  flex-column ">
+    <div className="advanced-search-form d-flex flex-column">
+      <div className="d-flex align-self-center w-100">
+       <div className="d-flex flex-column mx-2 w-100">
       <select
         className="rounded-pill border border-2 border-grey  p-2 text-secondary"
         id="adoptionStatus"
@@ -45,8 +47,10 @@ function AdvancedSearch() {
         <option value="20cm-50cm">Medium: 20-50 cm</option>
         <option value="over 70cm">Big: Over 50 cm</option>
       </select>
+     </div>
+     <div className="d-flex flex-column mx-2 w-100">
       <select
-        className="rounded-pill border border-2 border-grey p-2 text-secondary"
+        className="rounded-pill border border-2 border-grey p-2 text-secondary "
         id="weight"
         value={petSearch.weight}
         onChange={handlePetSearchChange}
@@ -56,13 +60,16 @@ function AdvancedSearch() {
         <option>Medium: 10-25 KG</option>
         <option>Big: Over 25 KG</option>
       </select>
+
       <input
-        className="rounded-pill border border-2 border-grey my-2 p-2 text-secondary"
+        className="rounded-pill border border-2 border-grey my-2 p-2 text-secondary "
         placeholder="Enter Name"
         id="name"
         value={petSearch.name}
         onChange={handlePetSearchChange}
       />
+      </div>
+      </div>
       <button className="login-btn rounded-pill" onClick={handlePetSearch}>
         <FontAwesomeIcon icon={faPaw} />
       </button>

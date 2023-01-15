@@ -20,8 +20,7 @@ function App() {
  const getAllPets=async()=>{
   try{
     const res=await axios.get('http://localhost:8080/Pets')
-    setPetList(res.data)
-    console.log("this is pet list ",petList)
+    setPetList(res.data)  
   }catch(err){console.log(err)}
  }
 
@@ -29,6 +28,7 @@ function App() {
   try{
  const res=await axios.get('http://localhost:8080/SignUp')
  setUsersList(res.data)
+ 
   }catch(err){
   console.log(err)
   }
@@ -36,15 +36,16 @@ function App() {
  
  const getCurrentUser=async()=>{
   try{
-    const res=await axios.get('http://localhost:8080/refresh',{withCredentials: true})
+    const res=await axios.get('http://localhost:8080/refresh',{withCredentials: true});
+    console.log(res.data)
      }catch(err){
      console.log(err)
      }
  }
 
-//  useEffect(() => {
-//   console.log('usersList now', usersList)
-//  }, [usersList])
+ useEffect(() => {
+  console.log('petList now', petList)
+ }, [petList])
 
 useEffect(()=>{
   getAllPets()

@@ -5,12 +5,10 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
-function SignUp() {
-  const { usersList, setUsersList, togglePassword, passwordShown, setcurrentUser} = useContext(petsAdoptingContext);
-  const [userInfo, setUserInfo] = useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""});
-  const handleChange = (e) => {
-    setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
-  };
+function SignUp({setWelcomeShow, welcomeShow}) {
+  const { usersList, setUsersList, togglePassword, passwordShown,userInfo,handleUserInfo} = useContext(petsAdoptingContext);
+ 
+
  const addNewUser=(newUser)=>{
   const usersArray=[...usersList, newUser]
   setUsersList(usersArray)
@@ -20,6 +18,10 @@ function SignUp() {
     try{
       const res=await axios.post('http://localhost:8080/SignUp',{...userInfo})
       addNewUser(res.data)
+      setWelcomeShow(false)
+     alert("You've Signed-In Seccefully noe Please LogIn")
+      if(!res) return
+      
       }catch(err){console.log(err)}
   }
 
@@ -28,7 +30,7 @@ function SignUp() {
   
       <input
     className="rounded-pill border border-grey border border-2"
-      onChange={handleChange}
+      onChange={handleUserInfo}
       placeholder="Full Name"
       value={userInfo.fullName}
       id="fullName"
@@ -36,21 +38,21 @@ function SignUp() {
      <input
      type="tel"
     className="rounded-pill border border-grey border border-2"
-      onChange={handleChange}
+      onChange={handleUserInfo}
       placeholder="Phone Number"
       value={userInfo.phoneNumber}
       id="phoneNumber"
     />
       <input
     className="rounded-pill border border-grey border border-2"
-      onChange={handleChange}
+      onChange={handleUserInfo}
       placeholder="Email"
       value={userInfo.email}
       id="email"
     />
     <input
      className="rounded-pill border border-grey border border-2"
-      onChange={handleChange}
+      onChange={handleUserInfo}
       placeholder="Password"
       value={userInfo.password}
       id="password"
@@ -60,7 +62,7 @@ function SignUp() {
     <label className='align-self-center my-3 fw-semibold'>Confirm Password</label>
       <input
      className="rounded-pill border border-grey border border-2"
-      onChange={handleChange}
+      onChange={handleUserInfo}
       placeholder="Password"
       value={userInfo.rePassword}
       id="rePassword"

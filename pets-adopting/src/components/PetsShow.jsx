@@ -4,8 +4,10 @@ import petsAdoptingContext from "../context/context";
 import { NavLink } from "react-router-dom";
 import PetCard from './PetCard';
 import { useState } from 'react';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
 const PetsShow = ({pet}) => {
-    const {deletePet,setCurrentPet} = useContext(petsAdoptingContext); 
+    const {deletePet,setCurrentPet, currentUser} = useContext(petsAdoptingContext); 
     const[like, setLike]=useState(false)
   const handleDelete= async ()=>{
     try{
@@ -24,23 +26,39 @@ const PetsShow = ({pet}) => {
     }catch(err){console.log(err)}
   }
 
-  const handleLike=()=>{
+  const handleLike=async(e)=>{
+    e.preventDefault() 
    setLike((curr)=>!curr)
+   try{
+    const res=await axios.patch(`http://localhost:8080/Update?id=${pet._id}`,{},{withCredentials: true})
+    console.log(res.data)
+    // setCurrentUser(res)
+
+   }catch(err){console.log(err)}
    console.log(like)
    console.log(pet._id)
   }
   return (
     <div className=' pet-card d-flex flex-column my-5'>
-        <span className='delete-btn' onClick={handleDelete}>&times;</span>
-        <span className='pet-card-title fs-3 fw-bolder my-2' onClick={handlePet}><NavLink to="/PetCard">Hey I'm {pet.name}</NavLink> </span>
-        <img className='w-75' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" />
+    
+    <span className='delete-btn mx-5' onClick={handleDelete}>&times;</span>
+        <span className=' fs-3 fw-bolder my-2' onClick={handlePet}><NavLink className="pet-card-title" to="/PetCard">Hey I'm {pet.name}</NavLink> </span>
+       <img   className='w-75' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg"/>
         <div className='d-flex flex-column align-items-center mt-3 fw-bold'>
         <span>{pet.weight}</span>
         <span> {pet.height}</span>
         <span>Looking For: {pet.adoptionStatus}</span>
         <span>Breed: {pet.breed}</span>
-        <button onClick={handleLike}className={like && "bg-danger"}>like</button>
         </div>
+        <div className='d-flex align-self-start'>
+        <span className=' adopt-btn me-1 rounded-pill'>Adoped</span>
+        <span className='foster-btn rounded-pill'>Foster</span>
+
+      </div>
+        <div>
+        <FontAwesomeIcon onClick={handleLike} className='like-btn' icon={faHeart} />
+        </div>
+
     </div>
 
   )

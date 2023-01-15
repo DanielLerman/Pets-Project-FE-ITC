@@ -11,19 +11,22 @@ import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 
 const Pets = () => {
-  const {petProfileInfo, setPetLiist,petList} = useContext(petsAdoptingContext);
+  const {petProfileInfo, setPetList,petList} = useContext(petsAdoptingContext);
   const [page, setPage]=useState(0)
   const FormTitels=["Pet's Profile", "Pet's Photo", "Pet's Bio", "Pet's Diet"]
   const pageDisplay =()=>{
     return page==0? <PetFormProfile/>:page==1? <PetFormPhoto/>:page==2? <PetFormBio/>:page==3&& <PetFormDiet/>
   }
   const addNewPet=(newPet)=>{
+    console.log("hi")
+    console.log(newPet)
     const petsListArr=[...petList, newPet]
-    setPetLiist(petsListArr)
+    console.log(petsListArr)
+    setPetList(petsListArr)
   }
   const handleSubmit= async (e)=>{
     e.preventDefault() 
-    // console.log(petProfileInfo)
+    console.log(petProfileInfo)
     try{
     const res=await axios.post('http://localhost:8080/pets', {...petProfileInfo});
     addNewPet(res.data)

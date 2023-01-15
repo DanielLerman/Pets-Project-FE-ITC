@@ -44,7 +44,7 @@ margin: 0;
 }
 .nav-bar a,
 .get-started-link a,
-.modalWindow {
+.modalWindow , .logout-btn{
   text-decoration: none;
   font-family: "Varela Round", sans-serif;
   font-weight: bold;
@@ -52,11 +52,11 @@ margin: 0;
   margin-right: 0.8rem;
 }
 .nav-bar a:not(.active),
-.modalWindow {
+.modalWindow, .logout-btn {
   color: #696969;
 }
 .nav-bar a:hover:not(.active),
-.modalWindow:hover {
+.modalWindow:hover, .logout-btn:hover {
   color: #ff3f2c;
 }
 .nav-bar a:hover,
@@ -120,13 +120,20 @@ margin: 0;
 .modal-close-btn:hover,
 .modal-back-btn:hover,
 .search-btn:hover,
-.sort-btn:hover,.delete-btn, .get-started-link, .pet-form-btn ,.form-photo-box,.header-exit,.admin-leran-more-btn, .admin-btn{
+.sort-btn:hover,.delete-btn, .get-started-link, .pet-form-btn ,.form-photo-box,.header-exit,.admin-leran-more-btn, .admin-btn,.like-btn,.adopt-btn, .foster-btn, .logout-btn{
   cursor: pointer;
 }
 .login-form {
   display: flex;
   flex-direction: column;
   margin: 1rem;
+}
+.updateProfile-form{
+  margin-top: 2rem;
+  padding: 1.5rem;
+  width: 60%;
+  margin-left: 20%;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 .login-form input {
   margin-bottom: 0.5rem;
@@ -198,11 +205,9 @@ margin: 0;
   align-items: center;
 }
 .advanced-search-form {
-  width: fit-content;
   justify-content: center;
-  align-self: flex-end;
   margin-top: 0.4rem;
-  margin-right: 10%;
+  width: 80%;
   padding: 1.6rem;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
@@ -299,5 +304,82 @@ box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   min-width: 15rem;
   max-width: 15rem;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ 
+}
+.pet-card-title{
+  color: #2a4745;
+  text-decoration: none;
 
 }
+.pet-card-title:hover{
+  font-size: 1.8rem;
+  color: #F5B041;
+  
+}
+.pet-page-title{
+  color: #F5B041;
+  text-transform: capitalize;
+
+}
+.like-btn{
+padding: 0.3rem;
+color: #b8c1c1;
+font-size: 1.5rem;
+border: 2px solid #b8c1c1;
+border-radius: 50%;
+position: relative;
+top:2.2rem;
+left: 7rem;
+}
+
+.like-btn:hover{
+  /* border: 2px solid #FF493C; */
+  color: #FF493C;
+
+}
+.adopt-btn, .foster-btn{
+ padding: 0.3rem 0.8rem;
+ /* color: #fff; */
+ font-weight: bold;
+ font-size: 0.8rem;
+  background-color: #40E0D0;
+position: relative;
+top:3.4rem;
+right:0.8rem;
+/* border: 1.5px solid #2a4745 */
+}
+.foster-btn{
+  background-color: #FFFFA3;
+  padding: 0.3rem 1.2rem;
+}
+.adopt-btn:hover, .foster-btn:hover{
+  border: 1.5px solid #2a4745
+
+}
+
+.pet-page{
+  position: absolute;
+  font-family: "Varela Round", sans-serif;
+ margin-left: 10%;
+ margin-top: 3.5rem;
+
+  width:80%;
+  height: 50%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+}
+.pet-page-left {
+  width: fit-content;
+}
+.pet-pic{
+  height: 9rem;
+  width: 10rem;
+  position: relative;
+  top:-2rem;
+  left:-3.5rem;
+}
+/* 
+.info-card{
+  background-color: #ff99cc;
+  width: 6rem;
+  height: 8rem;
+} */
