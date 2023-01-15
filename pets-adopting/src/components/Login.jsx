@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 import axios from 'axios';
 
-function Login() {
+function Login({handleClose}) {
   const { setCurrentUser, togglePassword, passwordShown,adminLogged,setAdmin } = useContext(petsAdoptingContext);
   const [userInfo, setUserInfo] = useState({ email: "", password: "" ,admin:""});
   const[logAsAdmin, setLogAsAdmin]=useState(false)
@@ -35,7 +35,7 @@ const handleLogIn= async (e)=>{
 //  }, [currentUser])
 
   return (
-    <form className="login-form">
+    <form className="login-form" onSubmit={handleClose}>
       <input
       className="rounded-pill border border-grey border border-2"
         onChange={handleChange}

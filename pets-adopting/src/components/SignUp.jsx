@@ -5,7 +5,7 @@ import axios from 'axios';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
-function SignUp({setWelcomeShow, welcomeShow}) {
+function SignUp({setWelcomeShow}) {
   const { usersList, setUsersList, togglePassword, passwordShown,userInfo,handleUserInfo} = useContext(petsAdoptingContext);
  
 
@@ -15,6 +15,7 @@ function SignUp({setWelcomeShow, welcomeShow}) {
  }
   const handleSignUp =async(e)=>{
     e.preventDefault() 
+  
     try{
       const res=await axios.post('http://localhost:8080/SignUp',{...userInfo})
       addNewUser(res.data)

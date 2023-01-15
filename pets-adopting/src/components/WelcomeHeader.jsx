@@ -41,8 +41,8 @@ function WelcomeHeader(){
       <Modal.Body className='d-flex flex-column align-items-center'>
       {!loginForm &&!signUPForm&&<span className=' login-now-btn rounded-pill mb-3' onClick={()=>{setLoginForm(true)}}>Log-in Now</span>}
       {!loginForm &&!signUPForm&&<span className='notSigned-txt'>Don't have an account yet?  <span onClick={()=>{setSignUpForm(true)}}  className='notSigned-btn rounded-pill'>Sign-Up</span></span>}
-      {loginForm && <Login setWelcomeShow={setWelcomeShow}/>}
-      {signUPForm && <SignUp welcomeShow={welcomeShow} setWelcomeShow={setWelcomeShow}/>}
+      {loginForm && <Login handleClose={handleClose}/>}
+      {signUPForm && <SignUp setWelcomeShow={setWelcomeShow} handleClose={handleClose}/>}
       </Modal.Body>
     </Modal>
     </>

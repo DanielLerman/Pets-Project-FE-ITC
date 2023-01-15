@@ -18,10 +18,7 @@ const Pets = () => {
     return page==0? <PetFormProfile/>:page==1? <PetFormPhoto/>:page==2? <PetFormBio/>:page==3&& <PetFormDiet/>
   }
   const addNewPet=(newPet)=>{
-    console.log("hi")
-    console.log(newPet)
     const petsListArr=[...petList, newPet]
-    console.log(petsListArr)
     setPetList(petsListArr)
   }
   const handleSubmit= async (e)=>{
@@ -35,7 +32,9 @@ const Pets = () => {
 
  
   return (
-<div className='pet-form'>
+<div className='pet-form '>
+  <div className='bar rounded-pill'><div className='steps-bar'><span className={page==0? "curent-step rounded-circle" : "step rounded-circle"}></span><span className={page==1? "curent-step rounded-circle" : "step rounded-circle"}></span><span className={page==2? "curent-step rounded-circle" : "step rounded-circle"}></span><span className={page==3? "curent-step rounded-circle" : "step rounded-circle"}></span></div></div>
+
 <div className='pet-form-header'>
 <span>{FormTitels[page]}</span>
 </div>

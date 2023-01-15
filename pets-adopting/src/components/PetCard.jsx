@@ -3,41 +3,56 @@ import axios from 'axios'
 import React, {useContext } from 'react'
 import { useState } from 'react';
 import petsAdoptingContext from "../context/context";
+import TextareaAutosize from 'react-textarea-autosize';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart} from "@fortawesome/free-solid-svg-icons";
 const PetCard = () => {
     const {currentPet} = useContext(petsAdoptingContext); 
-    const [showInfoBio, setShowInfoBio]=useState(false);
-    const [showInfoDiet, setShowInfoDiet]=useState(false);
-    const togglrInfoBbio=()=>{
-      setShowInfoBio((curr)=>!curr)
+    const [showInfo, setShowInfo]=useState(false);
+    const togglrInfo=()=>{
+      setShowInfo((curr)=>!curr)
     }
-    const togglrInfoDiet=()=>{
-      setShowInfoDiet((curr)=>!curr)
-    }
+ 
    
   return (
     <>
-    <div className=' pet-page d-flex '>
-    <img className=' pet-pic rounded-circle' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" />
-    <div className='d-flex flex-column my-3 align-items-center pet-page-left'>
-    <span className='pet-page-title fs-3 fw-bolder' > {currentPet.name}:</span>
-    {/* <span>{currentPet.weight}</span>
-    <span> {currentPet.height}</span>
-    <span>Looking For: {currentPet.adoptionStatus}</span>
-    <span>Breed: {currentPet.breed}</span> */}
-    </div> 
+    <span className='pet-page-title fw-bolder' >Hey I'm {currentPet.name}! </span>
+    <div className=' pet-page d-flex  '>
+      
+    <img className=' pet-pic  w-50 h-100' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" />
+    <FontAwesomeIcon className='like-btn-pet-page' icon={faHeart} />
+  
 
-    {/* <div className='d-flex  mt-4 mx-4 justify-content-between'>
-   <div onClick={togglrInfoBbio} className='info-card mx-4 rounded-4'>   {showInfoBio?<span>{currentPet.bio}</span>:<span>Check My Story</span>} </div>
-   <div onClick={togglrInfoDiet} className='info-card rounded-4'>        {showInfoDiet?<span>{currentPet.diet}</span>:<span>Check My Diet</span>}</div>
-   </div> */}
-
- 
-</div>
-<div className='d-flex align-items-center'>
-        <span className='  me-1 rounded-pill'>Adoped</span>
-        <span className='rounded-pill'>Foster</span>
+    <div className='d-flex flex-column w-100'>
+    <div className='d-flex flex-column '>
+        <span className=' adopt-btn-pet-page rounded-pill my-2'>Adoped</span>
+        <span className=' foster-btn-pet-page rounded-pill'>Foster</span>
 
       </div>
+      <div className='d-flex flex-column align-self-center my-3'>
+    <span className=' fw-bold fs-4'>Facts About Me:</span>
+    <div><span className='fw-bold'>Size: </span><span>{currentPet.weight}</span></div>
+    <div><span className='fw-bold'>Height:</span> <span>  {currentPet.height}</span></div>
+    <div><span className='fw-bold'>Breed: </span><span>{currentPet.breed}</span></div>
+    {/* <span >Looking For: <span>{currentPet.adoptionStatus}</span></span> */}
+  
+      </div>
+      <span  onClick={togglrInfo} className='more-info-btn align-self-end fw-bold rounded-pill'>{!showInfo?"Click For More v": "Close ^"}</span>
+    
+    </div> 
+</div>
+{showInfo&&
+
+<div className='more-info-pet d-flex flex-column w-100'>
+<label className='fw-bold text-warning'>About Me:</label>
+<TextareaAutosize className="outline-none mb-3" style={{ width: "60%",resize:"none" }} minRows={8} maxRows={8} value={currentPet.bio}/>
+<label className='fw-bold text-warning'>Special Diet:</label>
+<TextareaAutosize style={{ width: "60%",resize:"none" }} minRows={8} maxRows={8}  value={currentPet.diet}/>
+</div>
+}
+
+
+
 </>
 
   )
