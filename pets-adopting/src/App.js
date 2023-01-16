@@ -48,9 +48,10 @@ function App() {
  }, [petList])
 
 useEffect(()=>{
+  getCurrentUser()
   getAllPets()
   getAllUsers()
-  getCurrentUser()
+  
 },[])
   return (
     <BrowserRouter>

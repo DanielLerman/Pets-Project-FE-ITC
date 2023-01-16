@@ -13,6 +13,7 @@ const [currentPet, setCurrentPet]=useState("")
  const handlePetProfileChange=(e)=>{
   setPetProfileInfo({...petProfileInfo, [e.target.id]:e.target.value})
  }
+ const [petImage, setPetImage] = useState("");
  const deletePet=(petId)=>{
   const updatedPetsList=petList.filter(pet=>pet._id!==petId)
   setPetList(updatedPetsList)
@@ -42,6 +43,9 @@ const handleUserInfo = (e) => {
       currentPet, setCurrentPet,
       userInfo, setUserInfo,
       handleUserInfo,
+      petImage,
+   
+      setPetImage
     }
     return (
         <petsAdoptingContext.Provider value={valueToShare}>

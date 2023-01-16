@@ -1,5 +1,4 @@
 
-import axios from 'axios'
 import React, {useContext } from 'react'
 import { useState } from 'react';
 import petsAdoptingContext from "../context/context";
@@ -19,7 +18,7 @@ const PetCard = () => {
     <span className='pet-page-title fw-bolder' >Hey I'm {currentPet.name}! </span>
     <div className=' pet-page d-flex  '>
       
-    <img className=' pet-pic  w-50 h-100' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg" />
+    <img className=' pet-pic  w-50 h-100' src={currentPet.imageUrl} />
     <FontAwesomeIcon className='like-btn-pet-page' icon={faHeart} />
   
 
@@ -46,7 +45,7 @@ const PetCard = () => {
 <div className='more-info-pet d-flex flex-column w-100'>
 <label className='fw-bold text-warning'>About Me:</label>
 <TextareaAutosize className="outline-none mb-3" style={{ width: "60%",resize:"none" }} minRows={8} maxRows={8} value={currentPet.bio}/>
-<label className='fw-bold text-warning'>Special Diet:</label>
+<label className='fw-bold text-warning'>Dietary Restrictions:</label>
 <TextareaAutosize style={{ width: "60%",resize:"none" }} minRows={8} maxRows={8}  value={currentPet.diet}/>
 </div>
 }

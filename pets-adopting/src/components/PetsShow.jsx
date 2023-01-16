@@ -43,7 +43,7 @@ const PetsShow = ({pet}) => {
     
     <span className='delete-btn mx-5' onClick={handleDelete}>&times;</span>
         <span className=' fs-3 fw-bolder my-2' onClick={handlePet}><NavLink className="pet-card-title" to="/PetCard">Hey I'm {pet.name}</NavLink> </span>
-       <img   className='w-75' src="http://cdn.akc.org/content/article-body-image/samoyed_puppy_dog_pictures.jpg"/>
+       <img   className='w-75' src={pet.imageUrl} />
         <div className='d-flex flex-column align-items-center mt-3 fw-bold'>
         <span>{pet.weight}</span>
         <span> {pet.height}</span>
