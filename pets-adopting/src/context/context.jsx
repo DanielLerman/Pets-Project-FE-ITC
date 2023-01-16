@@ -44,6 +44,7 @@ const handleUserInfo = (e) => {
       userInfo, setUserInfo,
       handleUserInfo,
       petImage,
+     
    
       setPetImage
     }

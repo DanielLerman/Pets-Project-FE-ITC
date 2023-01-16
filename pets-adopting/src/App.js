@@ -1,5 +1,5 @@
 
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext,useState } from "react";
 import petsAdoptingContext from "./context/context";
 import { BrowserRouter, Routes, Route  } from "react-router-dom";
 import Home from "./components/Home";
@@ -16,7 +16,8 @@ import reactTextareaAutosize from "react-textarea-autosize";
 
 
 function App() {
-  const { usersList,setUsersList,setPetList, petList, currenUser } = useContext(petsAdoptingContext);
+  const {setUsersList,setPetList, petList} = useContext(petsAdoptingContext);
+  const[welcome, setWelcome]=useState("")
  const getAllPets=async()=>{
   try{
     const res=await axios.get('http://localhost:8080/Pets')
@@ -36,8 +37,9 @@ function App() {
  
  const getCurrentUser=async()=>{
   try{
-    const res=await axios.get('http://localhost:8080/refresh',{withCredentials: true});
+    const res=await axios.get('http://localhost:8080/welcome',{withCredentials: true});
     console.log(res.data)
+    setWelcome(res.data)
      }catch(err){
      console.log(err)
      }
@@ -55,7 +57,7 @@ useEffect(()=>{
 },[])
   return (
     <BrowserRouter>
-   <WelcomeHeader/>
+   <WelcomeHeader welcome={welcome}/>
     <Navigation />
     <Routes>
       <Route index element={<Home/>} />
