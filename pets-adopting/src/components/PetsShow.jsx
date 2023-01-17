@@ -1,14 +1,26 @@
 import axios from "axios";
-import React, { useContext } from "react";
+import React, { useContext ,useEffect} from "react";
 import petsAdoptingContext from "../context/context";
 import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+
 const PetsShow = ({ pet }) => {
   const { deletePet, setCurrentPet, admin, setCurrentUser } =useContext(petsAdoptingContext);
   const [like, setLike] = useState(false);
+  
+  // useEffect(() => {
+  //   checkForSavedPets()
+  //   console.log(like)
+  //   }, [])
+
+    // const checkForSavedPets=()=>{
+    
+    //   if(savedPets.includes(pet._id)){
+    //     console.log("true")
+    //   } else{console.log("baddd")}
+    // }
 
   const handleDelete = async () => {
     try {
@@ -22,6 +34,7 @@ const PetsShow = ({ pet }) => {
   };
 
   const handlePet = async () => {
+    
     console.log(pet._id);
     try {
       const res = await axios.get(`http://localhost:8080/Pets/${pet._id}`);

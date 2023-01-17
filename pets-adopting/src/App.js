@@ -16,7 +16,7 @@ import reactTextareaAutosize from "react-textarea-autosize";
 
 
 function App() {
-  const {setUsersList,setPetList, petList} = useContext(petsAdoptingContext);
+  const {setUsersList,setPetList, petList, currentUser, setSavedPets,setLike,savedPets} = useContext(petsAdoptingContext);
   const[welcome, setWelcome]=useState("")
  const getAllPets=async()=>{
   try{
@@ -44,11 +44,18 @@ function App() {
      console.log(err)
      }
  }
-
  useEffect(() => {
-  console.log('petList now', petList)
- }, [petList])
+  getAllSavedPets()
+ }, [currentUser])
 
+ const getAllSavedPets = async () => {
+  try {
+    const res = await axios.get(`http://localhost:8080/Pets/user/${currentUser._id}`,{ withCredentials: true });
+    setSavedPets(res.data)
+  } catch (err) {
+    console.log(err);
+  }
+};
 useEffect(()=>{
   getCurrentUser()
   getAllPets()
@@ -63,7 +70,7 @@ useEffect(()=>{
       <Route index element={<Home/>} />
       <Route path="/Search" element={<Search/>}/>
       <Route path="/Pets" element={<Pets/>}/>
-      <Route path="/MyPets" element={<MyPets/>}/>
+      <Route path="/MyPets" element={<MyPets />}/>
       <Route path="/PetCard" element={<PetCard/>}/>
       <Route path="/Profile" element={<ProfileSettings/>}/>
       

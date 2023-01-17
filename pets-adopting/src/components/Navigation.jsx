@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 function Navigation({welcome}) {
-  const { currentUser, setCurrentUser, admin } =
+  const { currentUser, setCurrentUser, admin,setSavedPets } =
     useContext(petsAdoptingContext);
 
   const handleLogOut = async () => {
@@ -15,6 +15,8 @@ function Navigation({welcome}) {
     });
     setCurrentUser("");
   };
+
+
 
   return (
     <div className="nav-bar">
@@ -25,7 +27,8 @@ function Navigation({welcome}) {
       <ul className="nav-bar-pages">
         <NavLink className="rounded-pill" activeclassname="active" to="/"> {" "} Home</NavLink>
         {currentUser && admin && (<NavLink className="rounded-pill" activeclassname="active" to="/Pets">{" "} Create</NavLink> )}
-        {currentUser&& !admin && (<NavLink className="rounded-pill" activeclassname="active" to="/MyPets"> {" "}<FontAwesomeIcon icon={faHeart} /></NavLink> )}
+        {/* add !admin to heart */}
+        {currentUser && (<NavLink className="rounded-pill" activeclassname="active" to="/MyPets"> {" "}<FontAwesomeIcon icon={faHeart} /></NavLink> )}
         {currentUser && (<NavLink className="rounded-pill" activeclassname="active" to="/Profile"> Profile{" "}</NavLink>)}
         {currentUser && admin && (<NavLink className="rounded-pill" activeclassname="active" to="/Search"> Search{" "}</NavLink>)}
         {currentUser == 0 ? (<ModalWindow welcome={welcome}/>) : ( <span className="rounded-pill logout-btn" onClick={handleLogOut}>Logout</span>)}

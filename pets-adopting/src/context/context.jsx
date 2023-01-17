@@ -6,7 +6,7 @@ const [petProfileInfo, setPetProfileInfo]=useState({name:"", height:"", weight:"
 const [userInfo, setUserInfo] = useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""});
 const[petList, setPetList]=useState([])
 const[usersList, setUsersList]=useState([])
-
+const[savedPets, setSavedPets]=useState([])
 const [admin, setAdmin]=useState(false)
 const [passwordShown, setPasswordShown] = useState(false);
 const[currentUser, setCurrentUser]=useState("")
@@ -45,6 +45,9 @@ const handleUserInfo = (e) => {
       userInfo, setUserInfo,
       handleUserInfo,
       petImage,
+      setSavedPets,
+      savedPets,
+     
      
      
    
