@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, {useContext, useState } from "react";
 import petsAdoptingContext from "../context/context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -10,7 +10,7 @@ import { faSliders} from "@fortawesome/free-solid-svg-icons";
 
 
 const Search = () => {
-  const { setPetList, petList } = useContext(petsAdoptingContext);
+  const { setPetList} = useContext(petsAdoptingContext);
   const[advanced, setAdvanced]=useState(false)
   const [petSearchByName, setPetSearchByName]=useState({name: ""})
 
@@ -20,11 +20,9 @@ const Search = () => {
 
     const handlePetSearchChange = (e) => {
     setPetSearchByName({ ...petSearchByName, [e.target.id]: e.target.value });
-    console.log(petSearchByName)
   };
 
   const handelPetSearch=async()=>{
-    console.log('click')
     try{
       const res=await axios.get(`http://localhost:8080/Search?name=${petSearchByName.name}`)
       setPetList(res.data);
@@ -55,8 +53,8 @@ const Search = () => {
   </div>
   </div>
   {advanced&&<AdvancedSearch/>}
- <PetsList/>
-</div>
+  <PetsList/>
+  </div>
 
 
   )

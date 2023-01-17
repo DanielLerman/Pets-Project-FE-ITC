@@ -58,7 +58,7 @@ useEffect(()=>{
   return (
     <BrowserRouter>
    <WelcomeHeader welcome={welcome}/>
-    <Navigation />
+    <Navigation welcome={welcome}/>
     <Routes>
       <Route index element={<Home/>} />
       <Route path="/Search" element={<Search/>}/>

@@ -5,37 +5,22 @@ import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
 function Login({ handleClose,setWelcomeShow }) {
-  const {
-    setCurrentUser,
-    togglePassword,
-    passwordShown,
-    setAdmin,
-  } = useContext(petsAdoptingContext);
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
-    admin: "",
-  });
+  const {setCurrentUser,togglePassword,passwordShown,setAdmin,} = useContext(petsAdoptingContext);
+  const [userInfo, setUserInfo] = useState({ email: "",password: "",admin: "",});
   const [logAsAdmin, setLogAsAdmin] = useState(false);
-  // const[adminKey, setAdminKey]=useState("")
   const handleChange = (e) => {
     setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
   };
   const handleLogIn = async (e) => {
     e.preventDefault();
     try {
-      console.log(userInfo)
-      const res = await axios.post("http://localhost:8080/LogIn",{ ...userInfo },{ withCredentials: true });
-      console.log(res.data)
+      const res = await axios.post("http://localhost:8080/LogIn",{ ...userInfo },{withCredentials: true });
       if (res.data.role.admin) {
-        console.log("thinks its true")
         setAdmin(true);
       }
       setCurrentUser(res.data);
       if (handleClose) {
-        console.log("this is itttt" ,handleClose)
         setWelcomeShow(false);
-        console.log("????????///")
       }
     } catch (err) {
       console.log(err);

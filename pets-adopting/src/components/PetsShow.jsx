@@ -1,67 +1,89 @@
-import axios from 'axios'
-import React, {useContext } from 'react'
+import axios from "axios";
+import React, { useContext } from "react";
 import petsAdoptingContext from "../context/context";
 import { NavLink } from "react-router-dom";
-import PetCard from './PetCard';
-import { useState } from 'react';
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart} from "@fortawesome/free-solid-svg-icons";
-const PetsShow = ({pet}) => {
-    const {deletePet,setCurrentPet, currentUser} = useContext(petsAdoptingContext); 
-    const[like, setLike]=useState(false)
-  const handleDelete= async ()=>{
-    try{
-        const res= await axios.delete(`http://localhost:8080/Pets/${pet._id}`)
-        if(res.data.ok){
-            deletePet(pet._id);
-        }
-    }catch(err){console.log(err)}
-  }
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { useEffect } from "react";
+const PetsShow = ({ pet }) => {
+  const { deletePet, setCurrentPet, admin, setCurrentUser } =useContext(petsAdoptingContext);
+  const [like, setLike] = useState(false);
 
-  const handlePet=async()=>{
-    console.log(pet._id)
-    try{
-      const res=await axios.get(`http://localhost:8080/Pets/${pet._id}`)
-      setCurrentPet(res.data)
-    }catch(err){console.log(err)}
-  }
+  const handleDelete = async () => {
+    try {
+      const res = await axios.delete(`http://localhost:8080/Pets/${pet._id}`);
+      if (res.data.ok) {
+        deletePet(pet._id);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  const handleLike=async(e)=>{
-    e.preventDefault() 
-   setLike((curr)=>!curr)
-   try{
-    const res=await axios.patch(`http://localhost:8080/Update?id=${pet._id}`,{},{withCredentials: true})
-    console.log(res.data)
-    // setCurrentUser(res)
+  const handlePet = async () => {
+    console.log(pet._id);
+    try {
+      const res = await axios.get(`http://localhost:8080/Pets/${pet._id}`);
+      setCurrentPet(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-   }catch(err){console.log(err)}
-   console.log(like)
-   console.log(pet._id)
-  }
+  const handleLike = async (e) => {
+    e.preventDefault();
+    if (!like) {
+      try {const res = await axios.post( `http://localhost:8080/Pets/${pet._id}/save`,{},{ withCredentials: true } );
+        setCurrentUser(res.data);
+        setLike((curr) => !curr);
+      } catch (err) {
+        console.log(err);
+      }
+    } else if (like) {
+      try {
+        console.log("here");
+        const res = await axios.delete(`http://localhost:8080/Pets/${pet._id}/save`,{ withCredentials: true });
+        setCurrentUser(res.data);
+        setLike(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+  };
+  useEffect(() => {
+    console.log(like);
+  }, [like]);
+
   return (
-    <div className=' pet-card d-flex flex-column my-5'>
-    
-    <span className='delete-btn mx-5' onClick={handleDelete}>&times;</span>
-        <span className=' fs-3 fw-bolder my-2' onClick={handlePet}><NavLink className="pet-card-title" to="/PetCard">Hey I'm {pet.name}</NavLink> </span>
-       <img   className='w-75' src={pet.imageUrl} />
-        <div className='d-flex flex-column align-items-center mt-3 fw-bold'>
+    <div className=" pet-card d-flex flex-column my-5">
+      {admin && (
+        <span className="delete-btn mx-5" onClick={handleDelete}>
+          &times;
+        </span>
+      )}
+      <span className=" fs-3 fw-bolder my-2" onClick={handlePet}>
+        <NavLink className="pet-card-title" to="/PetCard">
+          Hey I'm {pet.name}
+        </NavLink>{" "}
+      </span>
+      <img className="pet-card-url" src={pet.imageUrl} />
+      <div className="d-flex flex-column align-items-center mt-3 fw-bold">
         <span>{pet.weight}</span>
         <span> {pet.height}</span>
         <span>Looking For: {pet.adoptionStatus}</span>
         <span>Breed: {pet.breed}</span>
-        </div>
-        <div className='d-flex align-self-start'>
-        <span className=' adopt-btn me-1 rounded-pill'>Adoped</span>
-        <span className='foster-btn rounded-pill'>Foster</span>
-
       </div>
-        <div>
-        <FontAwesomeIcon onClick={handleLike} className='like-btn' icon={faHeart} />
-        </div>
-
+      <div className="d-flex align-self-start">
+        <span className=" adopt-btn me-1 rounded-pill">Adoped</span>
+        <span className="foster-btn rounded-pill">Foster</span>
+      </div>
+      <div>
+        <FontAwesomeIcon onClick={handleLike}  className={like ? "border border-danger text-danger like-btn" : "like-btn"}icon={faHeart}/>
+      </div>
     </div>
+  );
+};
 
-  )
-}
-
-export default PetsShow
+export default PetsShow;

@@ -11,7 +11,8 @@ import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
 
 const Pets = () => {
-  const {petProfileInfo, setPetList,petList,petImage,handleImage, setPetImage} = useContext(petsAdoptingContext);
+  const {petProfileInfo, setPetList,petList,petImage,setPetImage} = useContext(petsAdoptingContext);
+  const [post, setPost]=useState(false)
   const [page, setPage]=useState(0)
   const FormTitels=["Pet's Profile", "Pet's Photo", "Pet's Bio", "Pet's Diet"]
   const pageDisplay =()=>{
@@ -22,8 +23,8 @@ const Pets = () => {
     setPetList(petsListArr)
   }
   const handleSubmit= async (e)=>{
-    console.log(petImage)
     e.preventDefault() 
+    setPost(true)
     const petInfo= new FormData()
     petInfo.append('name', petProfileInfo.name)
     petInfo.append('height',petProfileInfo.height)
@@ -45,25 +46,20 @@ const Pets = () => {
  
   return (
 <div className='pet-form '>
-  <div className='bar rounded-pill '><div className='steps-bar '><span className={page==0? "curent-step rounded-circle spectrum-background " : "step rounded-circle"}></span><span className={page==1? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span><span className={page==2? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span><span className={page==3? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span></div></div>
+<div className='bar rounded-pill '><div className='steps-bar '><span className={page==0? "curent-step rounded-circle spectrum-background " : "step rounded-circle"}></span><span className={page==1? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span><span className={page==2? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span><span className={page==3? "curent-step rounded-circle spectrum-background" : "step rounded-circle"}></span></div></div>
 
 <div className='pet-form-header'>
 <span>{FormTitels[page]}</span>
 </div>
 <div className='form-box '>
-{page!=0&&<FontAwesomeIcon  className="rounded-circle pet-form-btn" icon={faArrowLeft}  
-    onClick={()=>
-      setPage((currPage)=>currPage -1)
-    
-      
-      }/> }
+{page!=0&&
+<FontAwesomeIcon  className="rounded-circle pet-form-btn" icon={faArrowLeft} onClick={()=>setPage((currPage)=>currPage -1)}/> }
 <div className='pet-form-body'> {pageDisplay()}
-{page==FormTitels.length-1&&<button className="pet-submit-btn rounded-pill " onClick={handleSubmit}>Post</button> }
+{page==FormTitels.length-1&&<button className="pet-submit-btn rounded-pill " onClick={handleSubmit}>{post?"Saved" :"Post"}</button> }
  </div>
   {page<FormTitels.length-1 &&<FontAwesomeIcon  className="rounded-circle pet-form-btn" icon={faArrowRight}  
   onClick={()=> setPage((currPage)=>currPage +1)}/>}
   </div>
- 
 </div>
     
   )

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 
-function ModalWindow() {
+function ModalWindow({welcome}) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -35,7 +35,7 @@ function ModalWindow() {
     
         </Modal.Body>
         <Modal.Footer >
-          {formtype&&<span className='notSigned-txt'>Don't have an account yet?  <span onClick={()=>setFormType(false)} className='notSigned-btn rounded-pill'>Sign-Up</span></span>}
+          {formtype&& !welcome.ok&&<span className='notSigned-txt'>Don't have an account yet?  <span onClick={()=>setFormType(false)} className='notSigned-btn rounded-pill'>Sign-Up</span></span>}
         </Modal.Footer>
       </Modal>
      

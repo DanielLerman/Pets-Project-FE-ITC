@@ -11,7 +11,7 @@ function Home() {
 
         <div className="home-text d-flex flex-column p-4">
           <div className="d-flex ">
-          <span className="home-adopt-text mx-2">Adopt </span><span className="mx-1">The Perfect Pet</span>
+          <span className="home-adopt-text mx-2 ">Adopt </span><span className="mx-1">The Perfect Pet</span>
           </div>
           <span className="description-text fs-6 ">
           Search for adoptable, adorable pets who are looking for a new home.

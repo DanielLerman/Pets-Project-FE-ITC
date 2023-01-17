@@ -57,7 +57,7 @@ function WelcomeHeader({welcome}) {
               }
             </>
           )}
-          {loginForm && <Login handleClose={handleClose} setWelcomeShow={setWelcomeShow} />}
+          {loginForm && <Login handleClose={handleClose} setWelcomeShow={setWelcomeShow}/>}
           {signUPForm && (<SignUp setWelcomeShow={setWelcomeShow} handleClose={handleClose} />)}
         </Modal.Body>
       </Modal>

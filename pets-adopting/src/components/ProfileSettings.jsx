@@ -5,9 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileSettings = () => {
-    const {togglePassword, passwordShown,userInfo,handleUserInfo, currentUser, setUserInfo, setCurrentUser} = useContext(petsAdoptingContext);
+    const {togglePassword, passwordShown,setCurrentUser} = useContext(petsAdoptingContext);
   const [toUpdateInfo, setToupdateInfo]=useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""})
-  console.log(toUpdateInfo)
     const handleUserInfoUpdate = (e) => {
       // if(e.target.value==="") {
       //   console.log(currentUser.e.target.id)
@@ -20,14 +19,13 @@ const ProfileSettings = () => {
       e.preventDefault();
       try{
       const res= await axios.post(`http://localhost:8080/Update` ,{...toUpdateInfo},{withCredentials: true})
-      console.log(res.data)
       setCurrentUser(res.data)
       }catch(err){console.log(err)}
     }
 
-    useEffect(() => {
-      console.log('currentUser now', currentUser)
-     }, [currentUser])
+    // useEffect(() => {
+    //   console.log('currentUser now', currentUser)
+    //  }, [currentUser])
     
    
     
