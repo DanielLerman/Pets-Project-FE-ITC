@@ -35,6 +35,7 @@ function SignUp({setWelcomeShow}) {
       placeholder="Full Name"
       value={userInfo.fullName}
       id="fullName"
+      required
     />
      <input
      type="tel"
@@ -43,6 +44,7 @@ function SignUp({setWelcomeShow}) {
       placeholder="Phone Number"
       value={userInfo.phoneNumber}
       id="phoneNumber"
+      required
     />
       <input
     className="rounded-pill border border-grey border border-2"
@@ -50,6 +52,7 @@ function SignUp({setWelcomeShow}) {
       placeholder="Email"
       value={userInfo.email}
       id="email"
+      required
     />
     <input
      className="rounded-pill border border-grey border border-2"
@@ -58,6 +61,7 @@ function SignUp({setWelcomeShow}) {
       value={userInfo.password}
       id="password"
       type={passwordShown ? "text" : "password"}
+      required
     />
     <div className="show-password d-inline-flex align-self-center mt-2"> <input className=" me-1" type="checkbox" onClick={togglePassword}/><span>Show Password</span> </div>
     <label className='align-self-center my-3 fw-semibold'>Confirm Password</label>
@@ -68,6 +72,7 @@ function SignUp({setWelcomeShow}) {
       value={userInfo.rePassword}
       id="rePassword"
       type={passwordShown ? "text" : "password"}
+      required
     />
   
     <button className="login-btn rounded-pill" type='submit'> Let's Goo.. <FontAwesomeIcon icon={faPaw} /></button>

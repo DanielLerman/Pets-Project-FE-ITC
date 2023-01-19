@@ -7,20 +7,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 const PetsShow = ({ pet }) => {
-  const { deletePet, setCurrentPet, admin, setCurrentUser } =useContext(petsAdoptingContext);
+  const { deletePet, setCurrentPet, admin, setCurrentUser, savedPets,savedPetToDelete} =useContext(petsAdoptingContext);
   const [like, setLike] = useState(false);
-  
-  // useEffect(() => {
-  //   checkForSavedPets()
-  //   console.log(like)
-  //   }, [])
 
-    // const checkForSavedPets=()=>{
+  useEffect(() => {
+    checkForSavedPets()
+    }, [])
+
+    const checkForSavedPets=()=>{
+      const svedPetsId=savedPets.map(pet => {
+       return pet._id
+       })
+       if (svedPetsId.includes(pet._id)) return setLike(true)
     
-    //   if(savedPets.includes(pet._id)){
-    //     console.log("true")
-    //   } else{console.log("baddd")}
-    // }
+    }
 
   const handleDelete = async () => {
     try {
@@ -34,8 +34,6 @@ const PetsShow = ({ pet }) => {
   };
 
   const handlePet = async () => {
-    
-    console.log(pet._id);
     try {
       const res = await axios.get(`http://localhost:8080/Pets/${pet._id}`);
       setCurrentPet(res.data);
@@ -53,9 +51,8 @@ const PetsShow = ({ pet }) => {
       } catch (err) {
         console.log(err);
       }
-    } else if (like) {
+    } else if (like|| savedPetToDelete) {
       try {
-        console.log("here");
         const res = await axios.delete(`http://localhost:8080/Pets/${pet._id}/save`,{ withCredentials: true });
         setCurrentUser(res.data);
         setLike(false);
@@ -65,10 +62,6 @@ const PetsShow = ({ pet }) => {
     }
 
   };
-  useEffect(() => {
-    console.log(like);
-  }, [like]);
-
   return (
     <div className=" pet-card d-flex flex-column my-5">
       {admin && (

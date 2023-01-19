@@ -3,21 +3,22 @@ import React, { useEffect, useContext,useState } from "react";
 import petsAdoptingContext from "./context/context";
 import { BrowserRouter, Routes, Route  } from "react-router-dom";
 import Home from "./components/Home";
-import MyPets from "./components/MyPets";
 import Navigation from "./components/Navigation";
 import Pets from "./components/Pets";
+import Career from './components/Career'
 import PetCard from "./components/PetCard";
 import Search from "./components/Search";
 import ProfileSettings from "./components/ProfileSettings";
 import WelcomeHeader from "./components/WelcomeHeader";
 import axios from "axios";
-import reactTextareaAutosize from "react-textarea-autosize";
+import SavedPetList from "./components/SavedPetList";
 
 
 
 function App() {
-  const {setUsersList,setPetList, petList, currentUser, setSavedPets,setLike,savedPets} = useContext(petsAdoptingContext);
+  const {setUsersList,setPetList,currentUser, setSavedPets} = useContext(petsAdoptingContext);
   const[welcome, setWelcome]=useState("")
+
  const getAllPets=async()=>{
   try{
     const res=await axios.get('http://localhost:8080/Pets')
@@ -29,7 +30,6 @@ function App() {
   try{
  const res=await axios.get('http://localhost:8080/SignUp')
  setUsersList(res.data)
- 
   }catch(err){
   console.log(err)
   }
@@ -38,7 +38,6 @@ function App() {
  const getCurrentUser=async()=>{
   try{
     const res=await axios.get('http://localhost:8080/welcome',{withCredentials: true});
-    console.log(res.data)
     setWelcome(res.data)
      }catch(err){
      console.log(err)
@@ -52,6 +51,8 @@ function App() {
   try {
     const res = await axios.get(`http://localhost:8080/Pets/user/${currentUser._id}`,{ withCredentials: true });
     setSavedPets(res.data)
+    if(res.data){
+    }
   } catch (err) {
     console.log(err);
   }
@@ -70,9 +71,10 @@ useEffect(()=>{
       <Route index element={<Home/>} />
       <Route path="/Search" element={<Search/>}/>
       <Route path="/Pets" element={<Pets/>}/>
-      <Route path="/MyPets" element={<MyPets />}/>
+      <Route path="/MyPets" element={<SavedPetList />}/>
       <Route path="/PetCard" element={<PetCard/>}/>
       <Route path="/Profile" element={<ProfileSettings/>}/>
+      <Route path="/Career" element={<Career/>}/>
       
     </Routes>
   </BrowserRouter>

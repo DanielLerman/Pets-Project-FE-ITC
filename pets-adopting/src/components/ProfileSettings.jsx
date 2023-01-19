@@ -5,13 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw} from "@fortawesome/free-solid-svg-icons";
 
 const ProfileSettings = () => {
-    const {togglePassword, passwordShown,setCurrentUser} = useContext(petsAdoptingContext);
+    const {togglePassword, passwordShown,setCurrentUser, currentUser} = useContext(petsAdoptingContext);
   const [toUpdateInfo, setToupdateInfo]=useState({  fullName: "" ,  email: "", password: "" , rePassword:"", phoneNumber:""})
-    const handleUserInfoUpdate = (e) => {
-      // if(e.target.value==="") {
-      //   console.log(currentUser.e.target.id)
-      //   setToupdateInfo({ ...toUpdateInfo, [e.target.id]:currentUser.e.target.id });
-      // } 
+
+ 
+  const handleUserInfoUpdate = (e) => {
        setToupdateInfo({ ...toUpdateInfo, [e.target.id]: e.target.value });
     };
 
@@ -23,20 +21,12 @@ const ProfileSettings = () => {
       }catch(err){console.log(err)}
     }
 
-    // useEffect(() => {
-    //   console.log('currentUser now', currentUser)
-    //  }, [currentUser])
-    
-   
-    
-   
-  
   return (
     <form className="updateProfile-form login-form justify-content-center rounded-5 " >
     <input
   className="rounded-pill border border-grey border border-2"
     onChange={handleUserInfoUpdate}
-    placeholder="Full Name"
+    placeholder={currentUser.fullName}
     value={toUpdateInfo.fullName}
     id="fullName"
   />
@@ -44,21 +34,21 @@ const ProfileSettings = () => {
    type="tel"
   className="rounded-pill border border-grey border border-2"
   onChange={handleUserInfoUpdate}
-    placeholder="Phone Number"
+    placeholder={currentUser.phoneNumber}
     value={toUpdateInfo.phoneNumber}
     id="phoneNumber"
   />
     <input
   className="rounded-pill border border-grey border border-2"
     onChange={handleUserInfoUpdate}
-    placeholder="Email"
+    placeholder={currentUser.email}
     value={toUpdateInfo.email}
     id="email"
   />
   <input
    className="rounded-pill border border-grey border border-2"
     onChange={handleUserInfoUpdate}
-    placeholder="Password"
+    placeholder="new password"
     value={toUpdateInfo.password}
     id="password"
     type={passwordShown ? "text" : "password"}

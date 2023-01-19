@@ -11,10 +11,14 @@ const [admin, setAdmin]=useState(false)
 const [passwordShown, setPasswordShown] = useState(false);
 const[currentUser, setCurrentUser]=useState("")
 const [currentPet, setCurrentPet]=useState("")
+
+
+
  const handlePetProfileChange=(e)=>{
   setPetProfileInfo({...petProfileInfo, [e.target.id]:e.target.value})
  }
  const [petImage, setPetImage] = useState("");
+
  const deletePet=(petId)=>{
   const updatedPetsList=petList.filter(pet=>pet._id!==petId)
   setPetList(updatedPetsList)
@@ -25,6 +29,8 @@ const [currentPet, setCurrentPet]=useState("")
 const handleUserInfo = (e) => {
   setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
 };
+
+
 
     const valueToShare={
       petProfileInfo,
@@ -47,10 +53,6 @@ const handleUserInfo = (e) => {
       petImage,
       setSavedPets,
       savedPets,
-     
-     
-     
-   
       setPetImage
     }
     return (

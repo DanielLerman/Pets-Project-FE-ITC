@@ -3,14 +3,14 @@ import petsAdoptingContext from "../context/context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaw } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import {  NavLink } from "react-router-dom";
 
 function Login({ handleClose,setWelcomeShow }) {
   const {setCurrentUser,togglePassword,passwordShown,setAdmin,} = useContext(petsAdoptingContext);
   const [userInfo, setUserInfo] = useState({ email: "",password: "",admin: "",});
   const [logAsAdmin, setLogAsAdmin] = useState(false);
   const handleChange = (e) => {
-    setUserInfo({ ...userInfo, [e.target.id]: e.target.value });
-  };
+    setUserInfo({ ...userInfo, [e.target.id]: e.target.value }) };
   const handleLogIn = async (e) => {
     e.preventDefault();
     try {
@@ -27,6 +27,12 @@ function Login({ handleClose,setWelcomeShow }) {
     }
   };
 
+ const handleCareerLink =(e)=>{
+  e.preventDefault();
+if (handleClose) {
+        setWelcomeShow(false);
+      }
+ }
 
 
   return (
@@ -37,6 +43,7 @@ function Login({ handleClose,setWelcomeShow }) {
         placeholder="Email"
         value={userInfo.email}
         id="email"
+        required
       />
       <input
         className="rounded-pill border border-grey border border-2"
@@ -45,6 +52,7 @@ function Login({ handleClose,setWelcomeShow }) {
         value={userInfo.password}
         id="password"
         type={passwordShown ? "text" : "password"}
+        required
       />
       <div className="show-password d-inline-flex align-self-center mt-2">
         {" "}
@@ -72,8 +80,8 @@ function Login({ handleClose,setWelcomeShow }) {
         )}
         <span className="notSigned-txt align-self-center my-1">
           Not Admin?{" "}
-          <span className="admin-leran-more-btn mx-2 rounded-pill text-warning">
-            <ins>Learn More</ins>
+          <span className="admin-leran-more-btn mx-2 rounded-pill text-warning" onClick={handleCareerLink}>
+           <ins>Learn More</ins>
           </span>
         </span>
       </div>

@@ -18,7 +18,7 @@ const PetCard = () => {
     <span className='pet-page-title fw-bolder' >Hey I'm {currentPet.name}! </span>
     <div className=' pet-page d-flex  '>
       
-    <img className=' pet-pic  w-50 h-100' src={currentPet.imageUrl} />
+    <img className=' pet-pic' src={currentPet.imageUrl} alt="pet"/>
     <FontAwesomeIcon className='like-btn-pet-page' icon={faHeart} />
   
 
